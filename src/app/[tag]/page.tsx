@@ -7,7 +7,7 @@ import Emoticons from "../components/emoticons.tsx";
 const emoticons = require("emoticon-data")["emoticons"];
 
 export default function Page() {
-	const [actualTag, setActualTag] = useState("angry");
+	const [actualTag, setActualTag] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 
