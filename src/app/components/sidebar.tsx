@@ -8,25 +8,21 @@ export function getTags(emoticons) {
 	return Array.from(tags).sort();
 }
 
-function setTag(tag, setActualTag) {
-	setActualTag(tag);
-	window.history.pushState({ tag }, "", `/${tag}`);
-}
 
-function Menu({ setActualTag, emoticons}) {
+function Menu({ setTag, emoticons}) {
 	return (
 		<div className="left-0 bg-blue-500 w-1/4">
 			{getTags(emoticons).map((tag, index) => (
-				<Tag key={index} tag={tag} setActualTag={setActualTag} />
+				<Tag key={index} tag={tag} setTag={setTag} />
 			))}
 		</div>
 	)
 }
 
-function Tag({ tag, setActualTag }) {
+function Tag({ tag, setTag }) {
 	return (
 		<div className="p-3 text-center text-slate-200">
-			<button onClick={() => setTag(tag, setActualTag)}>{tag}</button>
+			<button onClick={() => setTag(tag)}>{tag}</button>
 		</div>
 	)
 }

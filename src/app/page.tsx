@@ -9,9 +9,17 @@ const emoticons = require("emoticon-data")["emoticons"];
 export default function Page() {
 	const [actualTag, setActualTag] = useState("all");
 
+	function setTag(tag) {
+		if (tag === actualTag) {
+			tag = "all";
+		}
+		setActualTag(tag);
+		window.history.pushState({ tag }, "", `/${tag === "all" ? '' : tag}`);
+	}
+
 	return (
 		<div className="flex">
-			<Menu setActualTag={setActualTag} emoticons={emoticons}/>
+			<Menu setTag={setTag} emoticons={emoticons}/>
 			<Emoticons actualTag={actualTag} emoticons={emoticons}/>
 		</div>
 	)

@@ -11,6 +11,14 @@ export default function Page() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 
+	function setTag(tag) {
+		if (tag === actualTag) {
+			tag = "all";
+		}
+		setActualTag(tag);
+		window.history.pushState({ tag }, "", `/${tag === "all" ? '' : tag}`);
+	}
+
 	useEffect(() => {
 		const path = window.location.pathname;
 		const tag = path.split("/")[1]; // Assuming the format is /<tag>
@@ -27,7 +35,7 @@ export default function Page() {
 
 	return (
 		<div className="flex">
-			<Menu setActualTag={setActualTag} emoticons={emoticons}/>
+			<Menu setTag={setTag} emoticons={emoticons}/>
 			{loading ? (
 				<p>Loading...</p>
 			) : error ? (
